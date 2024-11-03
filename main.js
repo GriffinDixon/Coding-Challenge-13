@@ -29,4 +29,10 @@ fetch('https://www.course-api.com/javascript-store-products')
     })
     .catch(error => {
         console.error('Error fetching the products:', error);
+
+        // display an error message
+        const productContainer = document.getElementById('product-container');
+        const errorMessage = document.createElement('div');
+        errorMessage.innerHTML = `<p style="color: red; text-align: center;">Failed to load products. Please try again later.</p>`;
+        productContainer.appendChild(errorMessage);
     });
