@@ -1,26 +1,30 @@
-// Task 2: Fetch products from the API
+// Fetch products from the API
 fetch('https://www.course-api.com/javascript-store-products')
     .then(response => {
-        // Check response
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return response.json(); 
+        return response.json();
     })
     .then(data => {
-        // Extract product details and display them
-        const products = data; // API returns an array of products
+        console.log(data); // Log the data to check its structure
+        const products = data; // Use this line if data is an array of products
         const productContainer = document.getElementById('product-container');
 
         products.forEach(product => {
-            // create a new div for each product
             const productDiv = document.createElement('div');
+            productDiv.style.border = "1px solid #ccc"; // Add border
+            productDiv.style.padding = "16px"; // Add padding
+            productDiv.style.margin = "16px"; // Add margin
+            productDiv.style.textAlign = "center"; // Center text alignment
+
             productDiv.innerHTML = `
                 <h2>${product.name}</h2>
-                <p>Price: $${product.price}</p>
-                <img src="${product.image}" alt="${product.name}">
+                <p><strong>Company:</strong> ${product.company}</p>
+                <p><strong>Price:</strong> $${product.price}</p>
+                <img src="${product.image}" alt="${product.name}" style="width: 200px; height: auto;">
             `;
-            productContainer.appendChild(productDiv); // add the product div to the container
+            productContainer.appendChild(productDiv);
         });
     })
     .catch(error => {
